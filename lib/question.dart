@@ -1,4 +1,4 @@
-class Question{
+class Question {
   String questionText;
   bool questionAnswer;
   String explication;
