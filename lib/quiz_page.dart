@@ -15,7 +15,6 @@ class QuizzPageState extends State<QuizzPage>{
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-
       )
     );
   }

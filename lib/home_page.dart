@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
         child: Card(
           child: Column(
             children: [
-              Image.asset('assets/images/cover.jpg'),
+              Image.asset('images/cover.jpg'),
               ElevatedButton(
                   onPressed: (){
                     Navigator.of(context).push(MaterialPageRoute(
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
                         }
                     ));
                   },
-                  child: Text("Commencer le quiz")
+                  child: const Text("Commencer le quiz")
               )
             ],
           )
