@@ -107,6 +107,7 @@ class QuizzPageState extends State<QuizzPage>{
             actions: [
               TextButton(
                   onPressed: (){
+                    Navigator.of(ctx).pop();
                     Navigator.of(context).pop();
                   },
                   child: TextWithStyle(data: "Terminer",))
