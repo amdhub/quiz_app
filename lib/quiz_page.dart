@@ -75,7 +75,7 @@ class QuizzPageState extends State<QuizzPage>{
     String title = bonneReponse ? 'Bonne reponse' : 'Mauvaise reponse';
     String imageToShow = bonneReponse ? 'vrai.jpg' : 'faux.jpg';
     String path = 'images/$imageToShow';
-    return showDialog(
+    return await showDialog(
       barrierDismissible: false,
         context: context,
         builder: (BuildContext contex){
@@ -96,9 +96,32 @@ class QuizzPageState extends State<QuizzPage>{
     );
   }
 
-  void toNextQuestion(){
+  Future<void> showResult() async{
+    return await showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext ctx){
+          return AlertDialog(
+            title: TextWithStyle(data: 'Resultat du quiz'),
+            content: TextWithStyle(data: 'Votre score est de $score / ${questions.length}'),
+            actions: [
+              TextButton(
+                  onPressed: (){
+                    Navigator.of(context).pop();
+                  },
+                  child: TextWithStyle(data: "Terminer",))
+            ],
+          );
+        }
+    );
+  }
+
+  void toNextQuestion() {
     index ++;
-    setState(() {
-    });
+    if (index < questions.length) {
+      setState(() {});
+    }else{
+      showResult();
+    }
   }
 }
