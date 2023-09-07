@@ -76,6 +76,7 @@ class QuizzPageState extends State<QuizzPage>{
     String imageToShow = bonneReponse ? 'vrai.jpg' : 'faux.jpg';
     String path = 'images/$imageToShow';
     return showDialog(
+      barrierDismissible: false,
         context: context,
         builder: (BuildContext contex){
           return SimpleDialog(
@@ -85,12 +86,19 @@ class QuizzPageState extends State<QuizzPage>{
               TextWithStyle(data: question.explication),
               TextButton(
                   onPressed: (){
-
+                    Navigator.of(context).pop();
+                    toNextQuestion();
                   },
                   child: TextWithStyle(data: "Passer à la question suivante",))
             ],
           );
         }
     );
+  }
+
+  void toNextQuestion(){
+    index ++;
+    setState(() {
+    });
   }
 }
