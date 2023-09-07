@@ -10,4 +10,6 @@ Question({
   required this.explication,
   required this.imagePath
 });
+
+String getImage() => 'images/$imagePath';
 }
