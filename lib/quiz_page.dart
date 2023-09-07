@@ -50,18 +50,47 @@ class QuizzPageState extends State<QuizzPage>{
   ElevatedButton answerButton(bool b){
     return ElevatedButton(
       onPressed: (){
-        if(b == questions[index].questionAnswer){
-          score++;
-        }
-        setState(() {
-          index++;
-        });
+        checkAnswer(b);
       },
       style: ElevatedButton.styleFrom(
         primary: b ? Colors.greenAccent : Colors.redAccent,
         minimumSize: const Size(100, 50),
       ),
       child: Text(b ? 'Vrai' : 'Faux')
+    );
+  }
+
+  checkAnswer(bool answer){
+    final question = questions[index];
+    bool bonneReponse = question.questionAnswer;
+    if(bonneReponse){
+      setState(() {
+        score++;
+      });
+    }
+    showAnswer(bonneReponse);
+  }
+  Future<void> showAnswer(bool bonneReponse) async{
+    Question question = questions[index];
+    String title = bonneReponse ? 'Bonne reponse' : 'Mauvaise reponse';
+    String imageToShow = bonneReponse ? 'vrai.jpg' : 'faux.jpg';
+    String path = 'images/$imageToShow';
+    return showDialog(
+        context: context,
+        builder: (BuildContext contex){
+          return SimpleDialog(
+            title: TextWithStyle(data: title),
+            children: [
+              Image.asset(path),
+              TextWithStyle(data: question.explication),
+              TextButton(
+                  onPressed: (){
+
+                  },
+                  child: TextWithStyle(data: "Passer à la question suivante",))
+            ],
+          );
+        }
     );
   }
 }
